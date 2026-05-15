@@ -1,20 +1,11 @@
 # Desafío Matemático
 
-App móvil de cálculo mental (TP Desarrollo de Aplicaciones I) en React Native + Expo + TypeScript.
+App móvil de cálculo mental (TP Desarrollo de Aplicaciones I) en React Native + Expo + TypeScript. Proyecto para la materia de Desarrollo de Aplicaciones 1
 
 ## Requisitos previos (instalá una vez)
 
 1. **Node.js 20 LTS o superior** → https://nodejs.org/ (descargá el "LTS" para Windows).
-2. **Expo Go** en tu celular Android (Play Store) — para probar la app sin emulador.
-
-Verificá la instalación abriendo PowerShell y corriendo:
-
-```
-node --version
-npm --version
-```
-
-Si los dos muestran versiones, ya está.
+2. **Expo Go** en tu celular Android o iPhone para probar la app sin emulador.
 
 ## Primer arranque
 
@@ -40,15 +31,15 @@ Si los dos muestran versiones, ya está.
 
 ## Estado del proyecto
 
-**Fase 1 completada** — esqueleto de navegación. Pantallas: Inicio, Configuración, Juego (placeholder), Resultados (placeholder), Historial, Estadísticas.
+Fase 1 completada — esqueleto de navegación. Pantallas: Inicio, Configuración, Juego (placeholder), Resultados (placeholder), Historial, Estadísticas.
 
 Próximas fases:
-- Fase 2 — generador de operaciones + sistema de puntaje (lógica pura).
-- Fase 3 — modos de juego reales.
-- Fase 4 — persistencia con AsyncStorage.
+- ~~Fase 1 - esqueleto de navegación. Pantallas: Inicio, Configuración, Juego (placeholder), Resultados (placeholder), Historial, Estadísticas.~~
+- ~~Fase 2 — generador de operaciones + sistema de puntaje (lógica pura).~~
+- ~~Fase 3 — modos de juego.~~
+- ~~Fase 4 — persistencia con AsyncStorage.~~
 - Fase 5 — pantallas de historial y stats con datos reales.
-- Fase 6 — sonidos / animaciones / gráficos / dificultad dinámica (opcionales).
-- Fase 7 — capturas y documento de entrega.
+- Fase 6 — sonidos / animaciones / gráficos / dificultad dinámica (opcionales en el trabajo practico).
 
 ## Estructura
 
