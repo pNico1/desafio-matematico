@@ -1,24 +1,28 @@
-// Provider de estado del juego.
-// Envuelve la app y expone state + dispatch + helpers via useGame().
-
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useReducer, useRef } from 'react';
 import { Difficulty, GameMode } from '../navigation/types';
 import { gameReducer, GameState, initialState, snapshotOf } from '../utils/gameReducer';
-import { generateQuestion, generateRound } from '../utils/generator';
-import { DIFFICULTY_PARAMS } from '../types/game';
+import { generateRound } from '../utils/generator';
 
 interface GameContextValue {
   state: GameState;
-  start: (mode: GameMode, difficulty: Difficulty, iterations: number) => void;
+  /**
+   * Arranca una ronda. timeLimitMs es el tiempo POR PREGUNTA ya resuelto
+   * (el caller hace resolveTimeLimitMs antes). adaptiveDifficulty habilita
+   * la reduccion progresiva por cada correcta.
+   */
+  start: (args: {
+    mode: GameMode;
+    difficulty: Difficulty;
+    iterations: number;
+    timeLimitMs: number;
+    adaptiveDifficulty: boolean;
+  }) => void;
   answer: (userAnswer: string | number | boolean) => void;
   timeout: () => void;
   reset: () => void;
-  // helper: remaining ms para la pregunta actual (no es reactivo, llamarlo cada tick)
   remainingMs: () => number;
-  totalRemainingMs: () => number; // sólo timeattack
-  // pregunta actual (puede ser undefined si terminó)
+  totalRemainingMs: () => number;
   currentQuestion: () => GameState['questions'][number] | undefined;
-  // resumen para la pantalla de resultados
   snapshot: () => ReturnType<typeof snapshotOf>;
 }
 
@@ -26,7 +30,6 @@ const GameContext = createContext<GameContextValue | null>(null);
 
 interface ProviderProps {
   children: ReactNode;
-  // permitir inyectar un now() y un RNG para tests
   nowProvider?: () => number;
 }
 
@@ -35,14 +38,19 @@ export function GameProvider({ children, nowProvider = Date.now }: ProviderProps
   const stateRef = useRef(state);
   useEffect(() => { stateRef.current = state; }, [state]);
 
-  const start = useCallback((mode: GameMode, difficulty: Difficulty, iterations: number) => {
-    // En timeattack arrancamos con un buffer chico y vamos completando bajo demanda.
-    // En el resto, generamos las N preguntas de una.
+  const start = useCallback((args: {
+    mode: GameMode;
+    difficulty: Difficulty;
+    iterations: number;
+    timeLimitMs: number;
+    adaptiveDifficulty: boolean;
+  }) => {
+    const { mode, difficulty, iterations, timeLimitMs, adaptiveDifficulty } = args;
     const n = mode === 'timeattack' ? Math.max(50, iterations || 50) : iterations;
     const questions = generateRound(mode, difficulty, n);
     dispatch({
       type: 'START',
-      payload: { mode, difficulty, iterations, questions, now: nowProvider() },
+      payload: { mode, difficulty, iterations, questions, now: nowProvider(), timeLimitMs, adaptiveDifficulty },
     });
   }, [nowProvider]);
 

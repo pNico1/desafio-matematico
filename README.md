@@ -38,8 +38,8 @@ Próximas fases:
 - ~~Fase 2 — generador de operaciones + sistema de puntaje (lógica pura).~~
 - ~~Fase 3 — modos de juego.~~
 - ~~Fase 4 — persistencia con AsyncStorage.~~
-- Fase 5 — pantallas de historial y stats con datos reales.
-- Fase 6 — sonidos / animaciones / gráficos / dificultad dinámica (opcionales en el trabajo practico).
+- ~~Fase 5 — pantallas de historial y stats con datos reales.~~
+- Fase 6 — sonidos / animaciones / gráficos / dificultad dinámica (opcionales en el trabajo practico). (in process)
 
 ## Estructura
 

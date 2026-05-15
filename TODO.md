@@ -6,6 +6,6 @@
 
 ~~Fase 4 — Persistencia (AsyncStorage) Guardado de configuración, historial y mejores puntajes. Carga al arrancar.~~
 
-Fase 5 — Estadísticas e historial Pantallas de resultados al terminar ronda, historial y mejores puntajes.
+~~Fase 5 — Estadísticas e historial Pantallas de resultados al terminar ronda, historial y mejores puntajes.~~
 
 Fase 6 — Opcionales: sonidos, animaciones, gráficos de estadísticas, dificultad dinámica.~~
